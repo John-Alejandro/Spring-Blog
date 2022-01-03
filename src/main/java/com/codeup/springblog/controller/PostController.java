@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class PostController {
 
-    @GetMapping("/")
+    @GetMapping("/posts")
     @ResponseBody
     public String indexPosts(){
         return "posts index page";
