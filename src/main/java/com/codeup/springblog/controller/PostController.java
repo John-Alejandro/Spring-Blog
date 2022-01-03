@@ -6,25 +6,25 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class PostController {
 
-    @GetMapping("/posts")
+    @GetMapping("/")
     @ResponseBody
     public String indexPosts(){
         return "posts index page";
     }
 
-    @GetMapping(value = "/posts/{id}", method = RequestMethod.GET)
+    @GetMapping("/posts/id")
     @ResponseBody
     public String individualPosts(){
         return "view an individual post";
     }
 
-    @GetMapping(value = "/posts/create", method = RequestMethod.GET)
-    @ResponseBody
-    public String viewCreaPposts(){
-        return "view the form for creating a post";
-    }
-
-    @PostMapping("/posts/create")
-    @ResponseBody
-    public String
+//    @GetMapping(value = "/posts/create", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String viewCreaPposts(){
+//        return "view the form for creating a post";
+//    }
+//
+//    @PostMapping("/posts/create")
+//    @ResponseBody
+//    public String
 }
