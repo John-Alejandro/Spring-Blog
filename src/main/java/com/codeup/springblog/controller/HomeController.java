@@ -17,8 +17,5 @@ public class HomeController {
         return "home";
     }
 
-//    @GetMapping("/guess")
-//    public String guess() {
-//        return "Welcome now guess a number between 1 thru 6";
-//    }
+
 }

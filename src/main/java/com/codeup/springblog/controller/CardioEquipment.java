@@ -1,8 +1,10 @@
+package com.codeup.springblog.controller;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="cardio")
-public class equipment {
+@Table(name="cardioEquipments")
+public class CardioEquipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,7 +13,7 @@ public class equipment {
     @Column(nullable = false, length = 50)
     private String title;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String description;
 
     public long getId() {
