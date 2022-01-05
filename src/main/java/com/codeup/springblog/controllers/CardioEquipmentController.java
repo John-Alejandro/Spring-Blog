@@ -1,11 +1,13 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.CardioEquipment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CardioEquipmentController {
+
     private final CardioEquipmentRepository cardioEquipmentDao;
 
     public CardioEquipmentController(CardioEquipmentRepository cardioEquipmentDao) {
@@ -15,8 +17,7 @@ public class CardioEquipmentController {
     @GetMapping("/cardioEquipment")
     public String cardioEquipmentIndex(Model model) {
         CardioEquipment cardioEquipment;
-//        cardioEquipment = cardioEquipmentDao.getTitle(title);
-        model.addAttribute("CardioEquipment", cardioEquipmentDao.findAll());
+        model.addAttribute("cardioEquipment", cardioEquipmentDao.findAll());
         return "cardioEquipment";
     }
 }

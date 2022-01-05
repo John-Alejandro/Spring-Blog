@@ -1,9 +1,9 @@
-package com.codeup.springblog.controllers;
+package com.codeup.springblog.models;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="cardioEquipments")
+@Table(name="cardioEquipment")
 public class CardioEquipment {
 
     @Id
@@ -16,12 +16,12 @@ public class CardioEquipment {
     @Column(nullable = false, length = 50)
     private String description;
 
-    public long getId() {
-        return id;
-    }
-
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {
