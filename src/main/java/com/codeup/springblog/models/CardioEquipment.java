@@ -16,6 +16,12 @@ public class CardioEquipment {
     @Column(nullable = false, length = 50)
     private String description;
 
+    public static void deleteTitle(long cardioEquipmentId) {
+    }
+
+    public static void deleteId(long cardioEquipmentId) {
+    }
+
     public void setId(long id) {
         this.id = id;
     }

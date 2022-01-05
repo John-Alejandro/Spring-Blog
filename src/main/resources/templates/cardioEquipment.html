@@ -10,6 +10,11 @@
 <div th:each="cardioEquipment : ${cardioEquipment}">
 <p th:text="${cardioEquipment.getTitle()} + ' ' + ${cardioEquipment.getDescription()} "></p>
 </div>
+<form th:action="@{/delete}" th:object="${cardioEquipment}" method="post">
+    <input type="hidden" th:field="${cardioEquipment}"/>
+    <input type="submit" value="Delete"/>
+    <input type="submit" value="Edit"/>
+</form>
 
 
 </body>

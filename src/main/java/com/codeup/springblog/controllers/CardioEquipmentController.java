@@ -1,9 +1,12 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.CardioEquipment;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
+import static com.codeup.springblog.models.CardioEquipment.deleteTitle;
 
 @Controller
 public class CardioEquipmentController {
@@ -18,6 +21,20 @@ public class CardioEquipmentController {
     public String cardioEquipmentIndex(Model model) {
         CardioEquipment cardioEquipment;
         model.addAttribute("cardioEquipment", cardioEquipmentDao.findAll());
+        return "cardioEquipment";
+    }
+
+
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam("Title") long cardioEquipmentTitle) {
+//        CardioEquipment.deleteTitle(long cardioEquipmentTitle);
+        return "cardioEquipment";
+    }
+
+    @PostMapping("/edit")
+    public String edit(@RequestParam("Title") long cardioEquipmentTitle) {
+//        CardioEquipment.deleteTitle(long cardioEquipmentTitle);
         return "cardioEquipment";
     }
 }
