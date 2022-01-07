@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
+
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -62,8 +65,6 @@ public class PostController {
         @PostMapping("/posts/create")
         @ResponseBody
         public String createPost(){
-            return "";
-        }
+            return "";}
 }
 
-//
