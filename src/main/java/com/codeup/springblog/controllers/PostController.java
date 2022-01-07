@@ -1,39 +1,69 @@
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-
 @Controller
 public class PostController {
 
-    @GetMapping("/posts/index")
-    public String indexPosts(Model viewModel){
-        Post newPost1 = new Post ( "Post 1", "Hi!");
-        Post newPost2 = new Post ( "Post 2", "Howdy!");
+    private final PostRepository postDao;
 
-        ArrayList<Post> posts = new ArrayList<>();
-        posts.add(newPost1);
-        posts.add(newPost2);
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
 
-        viewModel.addAttribute("posts", posts);
+    @GetMapping("/posts")
+    public String indexPosts(Model model) {
+        model.addAttribute("allPosts", postDao.findAll());
+        return"posts/index";
+    }
 
-        return "posts/index";}
+    @GetMapping("/posts/{id}")
+    public String individualPost(@PathVariable int id) {
+        return "posts/show";
+    }
 
-    @GetMapping("/posts/show")
-    public String individualPost(Model viewModel) {
-        Post newPost = new Post ( "Hello World", "Welcome to Codeup");
-        viewModel.addAttribute("post", newPost);
-        return "posts/show";}
+    @GetMapping("/posts/edit/{id}")
+    public String editPost(@PathVariable long id, Model model) {
+        Post editPost = postDao.getById(id);
 
-    @GetMapping("/posts/create")
-    @ResponseBody
-    public String viewCreaPposts() {return "view the form for creating a post" ;}
+        model.addAttribute("postToEdit", editPost);
+        return "posts/edit";
+    }
 
-    @PostMapping("/posts/create")
-    @ResponseBody
-    public String createPost() {return ""; }
+    @PostMapping("/posts/edit")
+    public String savedEditPost(@RequestParam(name="postTitle") String postTitle, @RequestParam(name="postBody") String postBody, @RequestParam(name="postId") long id)
+        {
+
+            Post postToEdit = postDao.getById(id);
+
+            postToEdit.setBody(postBody);
+            postToEdit.setTitle(postTitle);
+
+            postDao.save(postToEdit);
+        return "redirect:/posts";
+        }
+
+        @PostMapping("/posts/delete/{id}")
+        public String deletePost(@PathVariable long id) {
+            long deletePostId = id;
+            postDao.deleteById(deletePostId);
+
+            return "redirect:/posts";
+        }
+
+        @GetMapping("/posts/create")
+        @ResponseBody
+        public String viewcreatePost() {
+            return"Placeholder for the create post form!";
+        }
+
+        @PostMapping("/posts/create")
+        @ResponseBody
+        public String createPost(){
+            return "";
+        }
 }
+
+//
