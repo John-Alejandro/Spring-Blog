@@ -57,14 +57,15 @@ public class PostController {
         }
 
         @GetMapping("/posts/create")
-        @ResponseBody
-        public String viewcreatePost() {
-            return"Placeholder for the create post form!";
+        public String viewCreatePost(Model model) {
+        model.addAttribute("post", new Post());
+            return"posts/create";
         }
 
         @PostMapping("/posts/create")
-        @ResponseBody
-        public String createPost(){
-            return "";}
+        public String createPost(@ModelAttribute Post post){
+        post.setUser(userDao.getById(1L));
+        postDao.save(post);
+            return "redirect:/posts";}
 }
 

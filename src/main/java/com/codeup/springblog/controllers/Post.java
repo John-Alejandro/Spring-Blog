@@ -1,7 +1,6 @@
 package com.codeup.springblog.controllers;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="posts")
@@ -17,8 +16,13 @@ public class Post {
     @Column(nullable = false, length = 100)
     private String body;
 
-    @ManyToMany(mappedBy = "article")
-    private List<User> postUser;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {return user;}
+
+    public void setUser(User user) { this.user = user; }
 
 
     public long getId() {
@@ -44,4 +48,6 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
+
 }
