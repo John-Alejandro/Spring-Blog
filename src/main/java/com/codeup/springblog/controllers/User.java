@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 @Table(name="users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -19,11 +20,25 @@ public class User {
     @Column(nullable = false, length = 50)
     private String password;
 
-    @ManyToMany
-    @JoinTable(name="articles_user",
-    joinColumns = {@JoinColumn(name="user_id")},
-        inverseJoinColumns = {@JoinColumn(name="post_id")})
-    private List<Post> userPosts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> posts;
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+    //    @ManyToMany
+//    @JoinTable(name="articles_user",
+//    joinColumns = {@JoinColumn(name="user_id")},
+//    inverseJoinColumns = {@JoinColumn(name="post_id")})
+//    private List<Post> userPosts;
+
+    public User(){
+
+    }
 
     public long getId() { return id; }
 
@@ -53,9 +68,9 @@ public class User {
         this.password = password;
     }
 
-    public List<Post> getUserPosts() { return userPosts; }
-
-    public void setUserPosts(List<Post> userPosts) { this.userPosts = userPosts; }
+//    public List<Post> getUserPosts() { return userPosts; }
+//
+//    public void setUserPosts(List<Post> userPosts) { this.userPosts = userPosts; }
 
 
 //    public User(long id, String username, String email, String password, List<Post> posts) {

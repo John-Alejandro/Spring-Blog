@@ -11,7 +11,6 @@ public class PostController {
     private final UserRepository userDao;
 
     public PostController(PostRepository postDao, UserRepository userDao) {
-
         this.postDao = postDao;
         this.userDao = userDao;
     }
@@ -45,7 +44,8 @@ public class PostController {
             postToEdit.setTitle(postTitle);
 
             postDao.save(postToEdit);
-        return "redirect:/posts";
+
+            return "redirect:/posts";
         }
 
         @PostMapping("/posts/delete/{id}")
@@ -58,14 +58,14 @@ public class PostController {
 
         @GetMapping("/posts/create")
         public String viewCreatePost(Model model) {
-        model.addAttribute("post", new Post());
+            model.addAttribute("post", new Post());
             return"posts/create";
         }
 
         @PostMapping("/posts/create")
         public String createPost(@ModelAttribute Post post){
-        post.setUser(userDao.getById(1L));
-        postDao.save(post);
+            post.setUser(userDao.getById(1L));
+            postDao.save(post);
             return "redirect:/posts";}
 }
 
