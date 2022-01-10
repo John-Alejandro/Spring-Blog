@@ -8,14 +8,11 @@
 
     <form th:action="${'/posts/edit'}" method="post">
         <label name="postTitle">Title of Post:</label>
-        <label>
-            <input name="postTitle" th:value="${postToEdit.getTitle()}">
-        </label>
+        <input name="postTitle" th:value="${postToEdit.getTitle()}">
 
         <label name="postBody">Body of Post:</label>
-        <label>
-            <input name="postBody" th:value="${postToEdit.getBody()}">
-        </label>
+        <input name="postBody" th:value="${postToEdit.getBody()}">
+
 
         <input name="postId" type="hidden" th:value="${postToEdit.getId()}">
 

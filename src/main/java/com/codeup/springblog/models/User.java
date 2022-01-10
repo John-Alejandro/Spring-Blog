@@ -4,20 +4,19 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 50)
+    @Column
     private String username;
 
-    @Column(nullable = false, length = 50)
+    @Column
     private String email;
 
-    @Column(nullable = false, length = 50)
+    @Column
     private String password;
 
     public User(User copy) {
@@ -29,21 +28,9 @@ public class User {
 
     public User(){}
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Post> posts;
+    @OneToMany(mappedBy = "user")
+    private List<Post> userPosts;
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-    //    @ManyToMany
-//    @JoinTable(name="articles_user",
-//    joinColumns = {@JoinColumn(name="user_id")},
-//    inverseJoinColumns = {@JoinColumn(name="post_id")})
-//    private List<Post> userPosts;
 
 
     public long getId() { return id; }
@@ -74,16 +61,8 @@ public class User {
         this.password = password;
     }
 
-//    public List<Post> getUserPosts() { return userPosts; }
-//
-//    public void setUserPosts(List<Post> userPosts) { this.userPosts = userPosts; }
+    public List<Post> getUserPosts() { return userPosts; }
 
+    public void setUserPosts(List<Post> userPosts) { this.userPosts = userPosts; }
 
-//    public User(long id, String username, String email, String password, List<Post> posts) {
-//        this.id = id;
-//        this.username = username;
-//        this.email = email;
-//        this.password = password;
-//        this.posts = posts;
-//    }
 }
