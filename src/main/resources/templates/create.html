@@ -6,13 +6,22 @@
 </head>
 <body>
 
-<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+<form action="/posts/create" method="post">
 
     <label for="postTitle">Blog Post Title</label>
-    <input type="text" th:field="*{title}" id="postTitle">
+    <input type="text" name="postTitle" id="postTitle">
 
     <label for="postBody">Blog Post Body</label>
-    <input type="text" th:field="*{body}" id="postBody">
+    <input type="text" name="postBody" id="postBody">
+
+
+<!--<form th:action="@{/posts/create}" th:method="post" th:object="${post}">-->
+
+<!--    <label for="postTitle">Blog Post Title</label>-->
+<!--    <input type="text" th:field="*{title}" id="postTitle">-->
+
+<!--    <label for="postBody">Blog Post Body</label>-->
+<!--    <input type="text" th:field="*{body}" id="postBody">-->
 
     <button type="submit">Submit your new blog post<</button>
 
