@@ -1,4 +1,4 @@
-package com.codeup.springblog.controllers;
+package com.codeup.springblog.models;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,6 +20,15 @@ public class User {
     @Column(nullable = false, length = 50)
     private String password;
 
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
+    public User(){}
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
 
@@ -36,9 +45,6 @@ public class User {
 //    inverseJoinColumns = {@JoinColumn(name="post_id")})
 //    private List<Post> userPosts;
 
-    public User(){
-
-    }
 
     public long getId() { return id; }
 
