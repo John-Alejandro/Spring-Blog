@@ -1,6 +1,6 @@
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.Repositories.CardioEquipmentRepository;
+import com.codeup.springblog.repositories.CardioEquipmentRepository;
 import com.codeup.springblog.models.CardioEquipment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

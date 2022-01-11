@@ -1,7 +1,7 @@
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.Repositories.PostRepository;
-import com.codeup.springblog.Repositories.UserRepository;
+import com.codeup.springblog.repositories.PostRepository;
+import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.Services.EmailService;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
@@ -24,9 +24,11 @@ public class PostController {
         this.emailService = emailService;
     }
 
+
     @GetMapping("/posts")
     public String indexPosts(Model model) {
         model.addAttribute("allPosts", postDao.findAll());
+
         return"posts/index";
     }
 
@@ -57,6 +59,7 @@ public class PostController {
             return "redirect:/posts";
         }
 
+
         @PostMapping("/posts/delete/{id}")
         public String deletePost(@PathVariable long id) {
             long deletePostId = id;
@@ -72,9 +75,9 @@ public class PostController {
         }
 
         @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post){
+        public String createPost(@ModelAttribute Post post){
 
-        User postCreator = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User postCreator = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
             post.setUser(postCreator);
 
@@ -85,20 +88,7 @@ public class PostController {
             emailService.prepareAndSend(post, emailSubject, emailBody);
             postDao.save(post);
 
-            return "redirect/posts";
+            return "redirect:/posts";
         }
-
-//        @GetMapping("/posts/create")
-//        public String viewCreatePost(Model model) {
-//            model.addAttribute("post", new Post());
-//            return"posts/create";
-//        }
-//        @PostMapping("/posts/create")
-//        public String createPost(@ModelAttribute Post post){
-//
-//            post.setUser(userDao.getById(1L));
-//            emailService.prepareAndSend(post, "Your post has been created",  "Congrats = your in.");
-//            postDao.save(post);
-//            return "redirect:/posts";}
 }
 

@@ -16,7 +16,7 @@ public class HelloController {
     @GetMapping("/hello/{name}")
     @ResponseBody
     public String sayHello(@PathVariable String name){
-        return "hello there " + name + "!";
+        return "Hello there " + name + "!";
     }
 
     @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
@@ -32,7 +32,7 @@ public class HelloController {
 
     @PostMapping("/join")
     public String joinCohort(@RequestParam(name = "cohort") String cohort, Model model) {
-        model.addAttribute("cohort", "Welcome to " + cohort + "!");
+        model.addAttribute("cohort", cohort);
         return "join";
     }
 

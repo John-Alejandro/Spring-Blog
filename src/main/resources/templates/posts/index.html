@@ -19,12 +19,10 @@
     </ul>
 </nav>
 
-    User ID: <span th:text="${#authentication.principal.id}"/>
-    Username: <span th:text="${#authentication.principal.username}"/>
-    Email: <span th:text="${#authentication.principal.email}"/>
+<!--    User ID: <span th:text="${#authentication.principal.id}"/>-->
+<!--    Username: <span th:text="${#authentication.principal.username}"/>-->
+<!--    Email: <span th:text="${#authentication.principal.email}"/>-->
 </div>
-
-
 
 <div th:each="post : ${allPosts}">
     <span th:text="${post.getTitle()}"></span>
