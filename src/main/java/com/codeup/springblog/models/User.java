@@ -33,23 +33,30 @@ public class User {
 
 
 
-    public long getId() { return id; }
+    public long getId() {
+        return id;
+    }
 
-    public void setId(long id) { this.id = id; }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
+
         this.username = username;
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
@@ -58,11 +65,16 @@ public class User {
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 
-    public List<Post> getUserPosts() { return userPosts; }
+    public List<Post> getUserPosts() {
+        return userPosts;
+    }
 
-    public void setUserPosts(List<Post> userPosts) { this.userPosts = userPosts; }
+    public void setUserPosts(List<Post> userPosts) {
+        this.userPosts = userPosts;
+    }
 
 }
